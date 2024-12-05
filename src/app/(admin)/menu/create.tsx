@@ -1,6 +1,8 @@
-import { StyleSheet, Text, View, TextInput } from "react-native";
+import { StyleSheet, Text, View, TextInput, Image } from "react-native";
 import React, { useState } from "react";
 import Button from "@/src/components/Button";
+import { defaultPizzaImage } from "@/src/components/ProductListItem";
+import Colors from "@/src/constants/Colors";
 
 const CreateProductScreen = () => {
   const [name, setName] = useState("");
@@ -48,6 +50,8 @@ const CreateProductScreen = () => {
 
   return (
     <View style={styles.container}>
+      <Image source={{ uri: defaultPizzaImage }} style={styles.image} />
+      <Text style={styles.textButton}>Select Image</Text>
       <Text style={styles.label}>Name</Text>
       <TextInput
         value={name}
@@ -76,6 +80,17 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     padding: 10,
+  },
+  image: {
+    width: "50%",
+    aspectRatio: 1,
+    alignSelf: "center",
+  },
+  textButton: {
+    alignSelf: "center",
+    fontWeight: "bold",
+    color: Colors.light.tint,
+    marginVertical: 10
   },
   input: {
     backgroundColor: "white",
