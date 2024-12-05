@@ -1,15 +1,18 @@
-import { Platform, StyleSheet, Text, View } from "react-native";
-import { useContext } from "react";
+import { FlatList, Platform, StyleSheet, Text, View } from "react-native";
 import { StatusBar } from "expo-status-bar";
-import { CartContext } from "../providers/CartProvider";
+import { useCart } from "../providers/CartProvider";
+import CartListItem from "../components/CartListItem";
 
 const CartScreen = () => {
- 
-const {items} = useContext(CartContext)
+  const { items } = useCart();
 
   return (
     <View>
-      <Text>Cart items length: {items.length}</Text>
+      <FlatList
+        data={items}
+        renderItem={({ item }) => <CartListItem cartItem={item} />}
+        contentContainerStyle={{ padding: 10, gap: 10 }}
+      />
 
       <StatusBar style={Platform.OS === "ios" ? "light" : "auto"} />
     </View>
